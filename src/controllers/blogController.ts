@@ -4,6 +4,14 @@ import User from '../models/user';
 import { createBlogSchema, updateBlogSchema } from '../utils/validation';
 import multer from 'multer';
 import path from 'path';
+import {v2 as cloudinary} from 'cloudinary';
+          
+cloudinary.config({ 
+  cloud_name: 'di67gv9fp', 
+  api_key: '774151655517525', 
+  api_secret: 'dyru31EX2OWR0PMD8P20NDW06iQ' 
+});
+
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -103,6 +111,7 @@ export const updateBlog = async (req: Request, res: Response): Promise<void> => 
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
 
 
 export const deleteBlog = async (req: Request, res: Response): Promise<void> => {
