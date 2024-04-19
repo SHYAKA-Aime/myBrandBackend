@@ -31,7 +31,8 @@ export const createBlog = async (req: Request, res: Response): Promise<void> => 
       }
 
       const { title, description } = req.body;
-      const image = req.file?.filename; // Use optional chaining to safely access filename
+      const imageUploadResult = await cloudinary.uploader.upload(req.file?.path as string); // Upload image to Cloudinary
+      const image = imageUploadResult.public_id; // Use the public_id property as the image identifier
       const blog = new Blog({ title, description, image });
       await blog.save();
       res.status(201).json({ message: 'Blog Created successfully', blog });
@@ -83,14 +84,19 @@ export const updateBlog = async (req: Request, res: Response): Promise<void> => 
       }
 
       const { title, description } = req.body;
-      const image = req.file?.filename; // Use optional chaining to safely access filename
+      let image;
+      if (req.file) {
+        const imageUploadResult = await cloudinary.uploader.upload(req.file.path);
+        image = imageUploadResult.public_id;
+      }
+
       const blog = await Blog.findByIdAndUpdate(id, { title, description, image }, { new: true });
       if (!blog) {
         res.status(404).json({ message: 'Blog not found' });
         return;
       }
 
-      res.status(200).json({ message: 'Blog Updated successfully', blog});
+      res.status(200).json({ message: 'Blog Updated successfully', blog });
     });
   } catch (error) {
     console.error(error);
