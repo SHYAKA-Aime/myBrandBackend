@@ -1,5 +1,5 @@
 import express from 'express';
-import { signup, login,forgotPassword,resetPassword,getUsers } from '../controllers/authController';
+import { signup, login,forgotPassword,resetPassword,getUsers,getUserInfo } from '../controllers/authController';
 import { isAdmin,Adminlogin } from '../middleware/authMiddleware';
 
 const router = express.Router();
@@ -143,4 +143,6 @@ router.post('/forgot-password', forgotPassword);
 router.post('/reset-password', resetPassword);
 
 router.get('/users',isAdmin,getUsers);
+
+router.get('/userinfo',getUserInfo);
 export default router;
