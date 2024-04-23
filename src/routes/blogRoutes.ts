@@ -208,6 +208,6 @@ router.post('/blogs/:id/like',authenticateUser, likeBlog);
  *         description: Blog not found
  */
 router.post('/blogs/:id/comment',authenticateUser, commentOnBlog);
-router.get('/blogs/:id/comments',authenticateUser, getComments);
+router.get('/blogs/:id/comments', getComments);
 
 export default router;
