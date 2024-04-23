@@ -1,5 +1,5 @@
 import express from 'express';
-import { signup, login,forgotPassword,resetPassword,getUsers,getUserInfo } from '../controllers/authController';
+import { signup, login,getUsers,getUserInfo } from '../controllers/authController';
 import { isAdmin,Adminlogin } from '../middleware/authMiddleware';
 
 const router = express.Router();
@@ -90,57 +90,7 @@ router.post('/login', login);
  */
 router.post('/adminlogin', Adminlogin);
 
-/**
- * @swagger
- * /auth/forgot-password:
- *   post:
- *     summary: Forgot password
- *     description: user Request to reset Password
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *             required:
- *               - email
- *     responses:
- *       200:
- *         description: Password reset email sent
- *       400:
- *         description: User not found
- */
-router.post('/forgot-password', forgotPassword);
-/**
- * @swagger
- * /auth/reset-password:
- *   post:
- *     summary: Reset password
- *     description: user Resets his/her Password
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               Token:
- *                 type: string
- *               newPassword:
- *                 type: string
- *             required:
- *               - token
- *               - newPassword
- *     responses:
- *       200:
- *         description: Password reset Successfully
- *       400:
- *         description: Invalid Token
- */
-router.post('/reset-password', resetPassword);
+
 
 router.get('/users',isAdmin,getUsers);
 
