@@ -14,7 +14,7 @@ dotenv.config();
 const swaggerUi = require('swagger-ui-express');
 const specs = require('../swaggerConfig');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 const MONGODB_URI = process.env.MONGODB_URI || '';
 
 mongoose.connect(MONGODB_URI, {
