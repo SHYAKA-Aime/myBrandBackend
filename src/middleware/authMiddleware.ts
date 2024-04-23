@@ -85,7 +85,7 @@ export const authenticateUser = async (req: Request, res: Response, next: NextFu
     req.user = decoded;
     next();
   } catch (error) {
-    res.status(401).json({ message: 'Invalid token' });
+    res.status(401).json({ message: 'Invalid token, You have to Login First' });
   }
 };
 

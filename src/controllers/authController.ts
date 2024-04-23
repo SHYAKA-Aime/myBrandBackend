@@ -161,7 +161,7 @@ export const getUserInfo = async (req: Request, res: Response): Promise<void> =>
       return;
     }
 
-    res.status(200).json({ user });
+    res.status(200).json(user);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
