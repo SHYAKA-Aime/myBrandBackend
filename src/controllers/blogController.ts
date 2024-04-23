@@ -5,7 +5,7 @@ import { createBlogSchema, updateBlogSchema } from '../utils/validation';
 import multer from 'multer';
 import path from 'path';
 import {v2 as cloudinary} from 'cloudinary';
-// import {sendEmailToSubscribers} from '../utils/Email';
+import {sendEmailToSubscribers} from '../utils/Email';
 import Subscription from '../models/Subscription';
 
 cloudinary.config({ 
@@ -46,14 +46,14 @@ export const createBlog = async (req: Request, res: Response): Promise<void> => 
       const blog = new Blog({ title, description, image });
       await blog.save();
 
-      // // Get all subscribers
-      // const subscribers = await Subscription.find({}, 'email');
+      // Get all subscribers
+      const subscribers = await Subscription.find({}, 'email');
 
-      // // Extract email addresses from subscribers
-      // const subscriberEmails = subscribers.map(subscriber => subscriber.email);
+      // Extract email addresses from subscribers
+      const subscriberEmails = subscribers.map(subscriber => subscriber.email);
 
-      // // Send email to subscribers
-      // await sendEmailToSubscribers(subscriberEmails, req.body.title);
+      // Send email to subscribers
+      await sendEmailToSubscribers(subscriberEmails, req.body.title);
 
       res.status(201).json({ message: 'Blog Created successfully and Email Sent to subscribers', blog });
     });
