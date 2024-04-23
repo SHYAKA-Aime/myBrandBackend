@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "start": "ts-node src/app.ts",
-    "app": "nodemon --max-old-space-size=4096 src/app.ts",
+    "app": "nodemon src/app.ts",
     "swagger": "ts-node src/swagger.ts"
   },
   "keywords": [],
