@@ -14,6 +14,7 @@ const router = express.Router();
  *   post:
  *     summary: Create a new blog
  *     description: Create a new blog with the provided data
+ *     tags: [Blogs]
  *     security:
  *       - JWT: []
  *     requestBody:
@@ -40,6 +41,7 @@ router.post('/blogs', isAdmin, createBlog);
  *   get:
  *     summary: Get all blogs
  *     description: Retrieve a list of all blogs
+ *     tags: [Blogs]
  *     responses:
  *       200:
  *         description: A list of blogs
@@ -57,6 +59,7 @@ router.get('/blogs', getBlogs);
  *   get:
  *     summary: Get a blog by ID
  *     description: Retrieve a blog by its ID
+ *     tags: [Blogs]
  *     parameters:
  *       - in: path
  *         name: id
@@ -81,6 +84,7 @@ router.get('/blogs/:id',getBlogById);
  *   put:
  *     summary: Update a blog by ID
  *     description: Update a blog's title, description, and image by its ID (Admin only)
+ *     tags: [Blogs]
  *     security:
  *       - JWT: []
  *     parameters:
@@ -127,6 +131,7 @@ router.put('/blogs/:id', isAdmin, updateBlog);
  *   delete:
  *     summary: Delete a blog by ID
  *     description: Delete a blog by its ID (Admin only)
+ *     tags: [Blogs]
  *     security:
  *       - JWT: []
  *     parameters:
@@ -155,6 +160,7 @@ router.delete('/blogs/:id', isAdmin, deleteBlog);
  *   post:
  *     summary: Like a blog
  *     description: Like a blog by its ID
+ *     tags: [Blogs]
  *     security:
  *       - JWT: []
  *     parameters:
@@ -178,6 +184,7 @@ router.post('/blogs/:id/like',authenticateUser, likeBlog);
  *   post:
  *     summary: Comment on a blog
  *     description: Add a comment to a blog by its ID
+ *     tags: [Blogs]
  *     security:
  *        - JWT: []
  *     parameters:
@@ -208,6 +215,19 @@ router.post('/blogs/:id/like',authenticateUser, likeBlog);
  *         description: Blog not found
  */
 router.post('/blogs/:id/comment',authenticateUser, commentOnBlog);
+/**
+ * @swagger
+ * /blogs/{id}/comments:
+ *   get:
+ *     summary: Comments of a blog
+ *     description: Get list of all Comments on a blog
+ *     tags: [Blogs]
+ *     requestBody:
+ *       required: false
+ *     responses:
+ *       500:
+ *         description: Internal Server Error
+ */
 router.get('/blogs/:id/comments', getComments);
 
 export default router;

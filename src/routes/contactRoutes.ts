@@ -10,6 +10,7 @@ const router = express.Router();
  *   post:
  *     summary: Contact Form Submission
  *     description: Submit a message through the contact form
+ *     tags: [Contact]
  *     requestBody:
  *       required: true
  *       content:
@@ -40,6 +41,18 @@ const router = express.Router();
  */
 
 router.post('/contact', sendContactMessage);
-
+/**
+ * @swagger
+ * /messages:
+ *   get:
+ *     summary: submitted Messages
+ *     description: Get list of all submitted messages as an admin
+ *     tags: [Contact]
+ *     requestBody:
+ *       required: false
+ *     responses:
+ *       500:
+ *         description: Internal Server Error
+ */
 router.get('/messages',isAdmin,getContactMessages);
 export default router;

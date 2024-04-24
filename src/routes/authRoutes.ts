@@ -10,6 +10,7 @@ const router = express.Router();
  *   post:
  *     summary: User Signup
  *     description: Register a new user
+ *     tags: [Authentication]
  *     requestBody:
  *       required: true
  *       content:
@@ -41,6 +42,7 @@ router.post('/signup', signup);
  *   post:
  *     summary: User Login
  *     description: Log in with existing credentials
+ *     tags: [Authentication]
  *     requestBody:
  *       required: true
  *       content:
@@ -68,6 +70,7 @@ router.post('/login', login);
  *   post:
  *     summary: Admin Login
  *     description: Log in as an admin
+ *     tags: [Authentication]
  *     requestBody:
  *       required: true
  *       content:
@@ -91,9 +94,34 @@ router.post('/login', login);
 router.post('/adminlogin', Adminlogin);
 
 
-
+/**
+ * @swagger
+ * /auth/users:
+ *   get:
+ *     summary: Users List 
+ *     description: Get list of all users as an admin
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: false
+ *     responses:
+ *       500:
+ *         description: Internal Server Error
+ */
 router.get('/users',isAdmin,getUsers);
 
+/**
+ * @swagger
+ * /auth/users:
+ *   get:
+ *     summary: User Info
+ *     description: Get Info of a single user
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: false
+ *     responses:
+ *       500:
+ *         description: Internal Server Error
+ */
 router.get('/userinfo',getUserInfo);
 
 
