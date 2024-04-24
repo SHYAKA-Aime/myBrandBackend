@@ -200,7 +200,7 @@ export const commentOnBlog = async (req: Request, res: Response): Promise<void> 
     }
 // Add the comment to the blog's comments array
 blog.comments.push({ name, comment });
-
+blog.commentCount++;
 await blog.save();
     res.status(200).json({ message: 'Comment added successfully', blog });
   } catch (error) {

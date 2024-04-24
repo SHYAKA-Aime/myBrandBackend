@@ -7,6 +7,7 @@ export interface BlogDocument extends Document {
   likes: number;
   likedBy: string[]; 
   comments: { name: string; comment: string }[];
+  commentCount: number; 
 }
 
 const blogSchema: Schema<BlogDocument> = new Schema({
@@ -16,6 +17,7 @@ const blogSchema: Schema<BlogDocument> = new Schema({
   likes: { type: Number, default: 0 },
   likedBy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   comments: [{ name: String, comment: String }],
+  commentCount: { type: Number, default: 0 }, 
 });
 
 export const Blog = mongoose.model<BlogDocument>('Blog', blogSchema);
