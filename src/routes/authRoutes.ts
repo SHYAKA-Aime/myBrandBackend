@@ -9,7 +9,7 @@ const router = express.Router();
  * /auth/signup:
  *   post:
  *     summary: User Signup
- *     description: Register a new user
+ *     description: Register a new user with Name,Email and Password
  *     tags: [Authentication]
  *     requestBody:
  *       required: true
@@ -99,7 +99,7 @@ router.post('/adminlogin', Adminlogin);
  * /auth/users:
  *   get:
  *     summary: Users List 
- *     description: Get list of all users as an admin
+ *     description: Get list of all users(Admin only)
  *     tags: [Authentication]
  *     requestBody:
  *       required: false
@@ -114,7 +114,7 @@ router.get('/users',isAdmin,getUsers);
  * /auth/users:
  *   get:
  *     summary: User Info
- *     description: Get Info of a single user
+ *     description: Get Info of a single user with ID from the token in Authorization header
  *     tags: [Authentication]
  *     requestBody:
  *       required: false

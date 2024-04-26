@@ -13,7 +13,7 @@ const router = express.Router();
  * /blogs:
  *   post:
  *     summary: Create a new blog
- *     description: Create a new blog with the provided data
+ *     description: Create a new blog with title,description and Image upload
  *     tags: [Blogs]
  *     security:
  *       - JWT: []
@@ -40,7 +40,7 @@ router.post('/blogs', isAdmin, createBlog);
  * /blogs:
  *   get:
  *     summary: Get all blogs
- *     description: Retrieve a list of all blogs
+ *     description: Retrieve list of all blogs
  *     tags: [Blogs]
  *     responses:
  *       200:
@@ -58,7 +58,7 @@ router.get('/blogs', getBlogs);
  * /blogs/{id}:
  *   get:
  *     summary: Get a blog by ID
- *     description: Retrieve a blog by its ID
+ *     description: Retrieve a blog by it's ID
  *     tags: [Blogs]
  *     parameters:
  *       - in: path
@@ -220,7 +220,7 @@ router.post('/blogs/:id/comment',authenticateUser, commentOnBlog);
  * /blogs/{id}/comments:
  *   get:
  *     summary: Comments of a blog
- *     description: Get list of all Comments on a blog
+ *     description: Get list of all Comments on a specific blog by it's ID
  *     tags: [Blogs]
  *     requestBody:
  *       required: false

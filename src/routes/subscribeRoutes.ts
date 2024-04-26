@@ -8,7 +8,7 @@ const router = express.Router();
  * /subscribe:
  *   post:
  *     summary: Subscribe to our Updates
- *     description: Subscribe to our Updates
+ *     description: Subscribe to our Updates to recieve email when a new blog is created
  *     tags: [Subscription]
  *     requestBody:
  *       required: true
